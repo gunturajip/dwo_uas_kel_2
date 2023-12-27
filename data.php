@@ -7,11 +7,10 @@ $query = sprintf("SELECT count(fp.customer_id) as total, f.judul FROM fakta_pend
 $result = $koneksi->query($query);
 
 $data = array();
-foreach ($result as $row){
+foreach ($result as $row) {
 	$data[] = $row;
 }
 
-$result -> close();
+$result->close();
 
 print json_encode($data);
-?>

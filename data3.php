@@ -7,11 +7,10 @@ $query = sprintf("SELECT DISTINCT(t.namahari) as nama, SUM(fp.amount) as total F
 $result3 = $koneksi->query($query);
 
 $data3 = array();
-foreach ($result3 as $row3){
+foreach ($result3 as $row3) {
 	$data3[] = $row3;
 }
 
-$result3 -> close();
+$result3->close();
 
 print json_encode($data3);
-?>
