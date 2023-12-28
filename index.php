@@ -63,45 +63,6 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Chart Menu
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link" href="customer.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Customer Chart</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="finance.php">
-                    <i class="fa fa-balance-scale"></i>
-                    <span>Finance Chart</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <!-- <hr class="sidebar-divider"> -->
-
-            <li class="nav-item">
-                <a class="nav-link" href="film.php">
-                    <i class="fa fa-film"></i>
-                    <span>Film Chart</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="stores.php">
-                    <i class="fas fa-store"></i>
-                    <span>Store Chart</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>

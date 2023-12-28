@@ -63,45 +63,6 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Chart Menu
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link" href="customer.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Customer Chart</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="finance.php">
-                    <i class="fa fa-balance-scale"></i>
-                    <span>Finance Chart</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <!-- <hr class="sidebar-divider"> -->
-
-            <li class="nav-item">
-                <a class="nav-link" href="film.php">
-                    <i class="fa fa-film"></i>
-                    <span>Film Chart</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="stores.php">
-                    <i class="fas fa-store"></i>
-                    <span>Store Chart</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -265,7 +226,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-user-alt fa-2x text-gray-300"></i>
+                                            <i class="fas fa-building fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -291,7 +252,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fa fa-box fa-2x text-gray-300"></i>
+                                            <i class="fa fa-user-alt fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -378,65 +339,6 @@
                                 <div class="card-body">
                                     <div class="chart-area">
                                         <canvas id="produk_per_tahun"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!--nia-->
-                        <!-- Area Chart -->
-                        <div class="col-xl-6 col-lg-3">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Jumlah Customer Per Tahun</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="customer_per_tahun"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-6 col-lg-3">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Jumlah Transaksi Per Tahun</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="transaksi_per_tahun"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -620,7 +522,7 @@
             $password = "";
             $database = "dwouas";
             $conn = mysqli_connect($host, $user, $password, $database);
-            $tahun = "SELECT YEAR(t.tanggallengkap) tahun FROM fact_sales f JOIN time t ON f.TimeID=t.time_id GROUP BY t.tahun ORDER BY t.tanggallengkap";
+            $tahun = "SELECT YEAR(t.tanggallengkap) tahun FROM fact_purchase f JOIN time t ON f.TimeID=t.time_id GROUP BY t.tahun ORDER BY t.tanggallengkap";
 
             $i = 1;
             $query_tahun = mysqli_query($conn, $tahun);
@@ -640,7 +542,7 @@
             }
 
             $a = 1;
-            $pembelian = "SELECT SUM(f.LineTotal) pembelian FROM fact_sales f JOIN time t ON f.TimeID=t.time_id GROUP BY t.tahun ORDER BY t.tanggallengkap";
+            $pembelian = "SELECT SUM(f.LineTotal) pembelian FROM fact_purchase f JOIN time t ON f.TimeID=t.time_id GROUP BY t.tahun ORDER BY t.tanggallengkap";
             $query_pembelian = mysqli_query($conn, $pembelian);
             $jumlah_pembelian = mysqli_num_rows($query_pembelian);
             $chart_pembelian = "";
@@ -655,7 +557,7 @@
             }
 
             $a = 1;
-            $produk = "SELECT COUNT(distinct f.ProductID) produk FROM fact_sales f JOIN time t ON f.TimeID=t.time_id GROUP BY t.tahun ORDER BY t.tanggallengkap";
+            $produk = "SELECT COUNT(distinct f.ProductID) produk FROM fact_purchase f JOIN time t ON f.TimeID=t.time_id GROUP BY t.tahun ORDER BY t.tanggallengkap";
             $query_produk = mysqli_query($conn, $produk);
             $jumlah_produk = mysqli_num_rows($query_produk);
             $chart_produk = "";
@@ -666,36 +568,6 @@
                     $a++;
                 } else {
                     $chart_produk .= $row1['produk'];
-                }
-            }
-
-            $a = 1;
-            $customer = "SELECT COUNT(distinct f.CustomerID) customer FROM fact_sales f JOIN time t ON f.TimeID=t.time_id GROUP BY t.tahun ORDER BY t.tanggallengkap";
-            $query_customer = mysqli_query($conn, $customer);
-            $jumlah_customer = mysqli_num_rows($query_customer);
-            $chart_customer = "";
-            while ($row1 = mysqli_fetch_array($query_customer)) {
-                if ($a < $jumlah_customer) {
-                    $chart_customer .= $row1['customer'];
-                    $chart_customer .= ',';
-                    $a++;
-                } else {
-                    $chart_customer .= $row1['customer'];
-                }
-            }
-
-            $a = 1;
-            $transaksi = "SELECT COUNT(distinct f.SalesID) transaksi FROM fact_sales f JOIN time t ON f.TimeID=t.time_id GROUP BY t.tahun ORDER BY t.tanggallengkap";
-            $query_transaksi = mysqli_query($conn, $transaksi);
-            $jumlah_transaksi = mysqli_num_rows($query_transaksi);
-            $chart_transaksi = "";
-            while ($row1 = mysqli_fetch_array($query_transaksi)) {
-                if ($a < $jumlah_transaksi) {
-                    $chart_transaksi .= $row1['transaksi'];
-                    $chart_transaksi .= ',';
-                    $a++;
-                } else {
-                    $chart_transaksi .= $row1['transaksi'];
                 }
             }
             ?>
@@ -807,184 +679,6 @@
                         pointHitRadius: 10,
                         pointBorderWidth: 2,
                         data: [<?php echo $chart_produk; ?>],
-                    }],
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    layout: {
-                        padding: {
-                            left: 10,
-                            right: 25,
-                            top: 25,
-                            bottom: 0
-                        }
-                    },
-                    scales: {
-                        xAxes: [{
-                            time: {
-                                unit: 'date'
-                            },
-                            gridLines: {
-                                display: false,
-                                drawBorder: false
-                            },
-                            ticks: {
-                                maxTicksLimit: 1000
-                            }
-                        }],
-                        yAxes: [{
-                            ticks: {
-                                maxTicksLimit: 5,
-                                padding: 10,
-                                // Include a dollar sign in the ticks
-                                callback: function(value, index, values) {
-                                    return number_format(value);
-                                }
-                            },
-                            gridLines: {
-                                color: "rgb(234, 236, 244)",
-                                zeroLineColor: "rgb(234, 236, 244)",
-                                drawBorder: false,
-                                borderDash: [2],
-                                zeroLineBorderDash: [2]
-                            }
-                        }],
-                    },
-                    legend: {
-                        display: false
-                    },
-                    tooltips: {
-                        backgroundColor: "rgb(255,255,255)",
-                        bodyFontColor: "#858796",
-                        titleMarginBottom: 10,
-                        titleFontColor: '#6e707e',
-                        titleFontSize: 14,
-                        borderColor: '#dddfeb',
-                        borderWidth: 1,
-                        xPadding: 15,
-                        yPadding: 15,
-                        displayColors: false,
-                        intersect: false,
-                        mode: 'index',
-                        caretPadding: 10,
-                        callbacks: {
-                            label: function(tooltipItem, chart) {
-                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                                return datasetLabel + ':' + number_format(tooltipItem.yLabel);
-                            }
-                        }
-                    }
-                }
-            });
-
-            var ctx = document.getElementById("customer_per_tahun");
-            var myLineChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [<?php echo $chart_tahun; ?>],
-                    datasets: [{
-                        label: "Jumlah Customer",
-                        lineTension: 0.3,
-                        backgroundColor: "rgba(78, 115, 223, 0.05)",
-                        borderColor: "rgba(78, 115, 223, 1)",
-                        pointRadius: 3,
-                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                        pointBorderColor: "rgba(78, 115, 223, 1)",
-                        pointHoverRadius: 3,
-                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                        pointHitRadius: 10,
-                        pointBorderWidth: 2,
-                        data: [<?php echo $chart_customer; ?>],
-                    }],
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    layout: {
-                        padding: {
-                            left: 10,
-                            right: 25,
-                            top: 25,
-                            bottom: 0
-                        }
-                    },
-                    scales: {
-                        xAxes: [{
-                            time: {
-                                unit: 'date'
-                            },
-                            gridLines: {
-                                display: false,
-                                drawBorder: false
-                            },
-                            ticks: {
-                                maxTicksLimit: 1000
-                            }
-                        }],
-                        yAxes: [{
-                            ticks: {
-                                maxTicksLimit: 5,
-                                padding: 10,
-                                // Include a dollar sign in the ticks
-                                callback: function(value, index, values) {
-                                    return number_format(value);
-                                }
-                            },
-                            gridLines: {
-                                color: "rgb(234, 236, 244)",
-                                zeroLineColor: "rgb(234, 236, 244)",
-                                drawBorder: false,
-                                borderDash: [2],
-                                zeroLineBorderDash: [2]
-                            }
-                        }],
-                    },
-                    legend: {
-                        display: false
-                    },
-                    tooltips: {
-                        backgroundColor: "rgb(255,255,255)",
-                        bodyFontColor: "#858796",
-                        titleMarginBottom: 10,
-                        titleFontColor: '#6e707e',
-                        titleFontSize: 14,
-                        borderColor: '#dddfeb',
-                        borderWidth: 1,
-                        xPadding: 15,
-                        yPadding: 15,
-                        displayColors: false,
-                        intersect: false,
-                        mode: 'index',
-                        caretPadding: 10,
-                        callbacks: {
-                            label: function(tooltipItem, chart) {
-                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                                return datasetLabel + ':' + number_format(tooltipItem.yLabel);
-                            }
-                        }
-                    }
-                }
-            });
-
-            var ctx = document.getElementById("transaksi_per_tahun");
-            var myLineChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [<?php echo $chart_tahun; ?>],
-                    datasets: [{
-                        label: "Jumlah Transaksi",
-                        lineTension: 0.3,
-                        backgroundColor: "rgba(78, 115, 223, 0.05)",
-                        borderColor: "rgba(78, 115, 223, 1)",
-                        pointRadius: 3,
-                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                        pointBorderColor: "rgba(78, 115, 223, 1)",
-                        pointHoverRadius: 3,
-                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                        pointHitRadius: 10,
-                        pointBorderWidth: 2,
-                        data: [<?php echo $chart_transaksi; ?>],
                     }],
                 },
                 options: {
