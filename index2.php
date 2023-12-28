@@ -189,7 +189,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Total Penjualan</div>
+                                                Total Pembelian</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
                                                 $host       = "localhost";
@@ -198,10 +198,10 @@
                                                 $database   = "dwouas";
                                                 $mysqli     = mysqli_connect($host, $user, $password, $database);
 
-                                                $sql = "SELECT SUM(LineTotal) as total_penjualan from fact_sales";
+                                                $sql = "SELECT SUM(LineTotal) as total_pembelian from fact_purchase";
                                                 $query = mysqli_query($mysqli, $sql);
                                                 while ($row2 = mysqli_fetch_array($query)) {
-                                                    echo "$" . number_format($row2['total_penjualan'], 0, ".", ",");
+                                                    echo "$" . number_format($row2['total_pembelian'], 0, ".", ",");
                                                 }
                                                 ?>
                                             </div>
@@ -221,13 +221,13 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Total Transaksi</div>
+                                                Total Metode Pengiriman</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                $sql = "SELECT COUNT(distinct SalesID) as total_transaksi from fact_sales";
+                                                $sql = "SELECT COUNT(distinct ShipMethodID) as total_metode_pengiriman from fact_purchase";
                                                 $query = mysqli_query($mysqli, $sql);
                                                 while ($row2 = mysqli_fetch_array($query)) {
-                                                    echo number_format($row2['total_transaksi'], 0, ".", ",");
+                                                    echo number_format($row2['total_metode_pengiriman'], 0, ".", ",");
                                                 }
                                                 ?>
                                             </div>
@@ -246,16 +246,16 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Customer
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Vendor Perusahaan
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                                                         <?php
-                                                        $sql = "SELECT COUNT(distinct CustomerID) as total_customer from fact_sales";
+                                                        $sql = "SELECT COUNT(distinct VendorID) as total_vendor_perusahaan from fact_purchase";
                                                         $query = mysqli_query($mysqli, $sql);
                                                         while ($row2 = mysqli_fetch_array($query)) {
-                                                            echo number_format($row2['total_customer'], 0, ".", ",");
+                                                            echo number_format($row2['total_vendor_perusahaan'], 0, ".", ",");
                                                         }
                                                         ?>
                                                     </div>
@@ -279,10 +279,36 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Total PIC Perusahaan</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                $sql = "SELECT COUNT(distinct EmployeeID) as total_pic_perusahaan from fact_purchase";
+                                                $query = mysqli_query($mysqli, $sql);
+                                                while ($row2 = mysqli_fetch_array($query)) {
+                                                    echo number_format($row2['total_pic_perusahaan'], 0, ".", ",");
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-box fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Total Produk</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                $sql = "SELECT COUNT(distinct ProductID) as total_produk from fact_sales";
+                                                $sql = "SELECT COUNT(distinct ProductID) as total_produk from fact_purchase";
                                                 $query = mysqli_query($mysqli, $sql);
                                                 while ($row2 = mysqli_fetch_array($query)) {
                                                     echo number_format($row2['total_produk'], 0, ".", ",");
@@ -306,7 +332,7 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Jumlah Penjualan Per Tahun</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian Per Tahun</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -323,7 +349,7 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <canvas id="penjualan_per_tahun"></canvas>
+                                        <canvas id="pembelian_per_tahun"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -416,10 +442,11 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Content Row -->
 
                     <div class="row">
-                        <iframe name="mondrian" src="http://localhost:8080/mondrian/testpage.jsp?query=mondrian" style="height:300px; width:100%; border:none; align-content:center"> </iframe>
+                        <iframe name="mondrian" src="http://localhost:8080/mondrian/testpage.jsp?query=mondrian2" style="height:300px; width:100%; border:none; align-content:center"> </iframe>
 
                     </div>
                     <!-- /.container-fluid -->
@@ -613,17 +640,17 @@
             }
 
             $a = 1;
-            $penjualan = "SELECT SUM(f.LineTotal) penjualan FROM fact_sales f JOIN time t ON f.TimeID=t.time_id GROUP BY t.tahun ORDER BY t.tanggallengkap";
-            $query_penjualan = mysqli_query($conn, $penjualan);
-            $jumlah_penjualan = mysqli_num_rows($query_penjualan);
-            $chart_penjualan = "";
-            while ($row1 = mysqli_fetch_array($query_penjualan)) {
-                if ($a < $jumlah_penjualan) {
-                    $chart_penjualan .= $row1['penjualan'];
-                    $chart_penjualan .= ',';
+            $pembelian = "SELECT SUM(f.LineTotal) pembelian FROM fact_sales f JOIN time t ON f.TimeID=t.time_id GROUP BY t.tahun ORDER BY t.tanggallengkap";
+            $query_pembelian = mysqli_query($conn, $pembelian);
+            $jumlah_pembelian = mysqli_num_rows($query_pembelian);
+            $chart_pembelian = "";
+            while ($row1 = mysqli_fetch_array($query_pembelian)) {
+                if ($a < $jumlah_pembelian) {
+                    $chart_pembelian .= $row1['pembelian'];
+                    $chart_pembelian .= ',';
                     $a++;
                 } else {
-                    $chart_penjualan .= $row1['penjualan'];
+                    $chart_pembelian .= $row1['pembelian'];
                 }
             }
 
@@ -672,13 +699,13 @@
                 }
             }
             ?>
-            var ctx = document.getElementById("penjualan_per_tahun");
+            var ctx = document.getElementById("pembelian_per_tahun");
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: [<?php echo $chart_tahun; ?>],
                     datasets: [{
-                        label: "Jumlah Penjualan",
+                        label: "Jumlah Pembelian",
                         lineTension: 0.3,
                         backgroundColor: "rgba(78, 115, 223, 0.05)",
                         borderColor: "rgba(78, 115, 223, 1)",
@@ -690,7 +717,7 @@
                         pointHoverBorderColor: "rgba(78, 115, 223, 1)",
                         pointHitRadius: 10,
                         pointBorderWidth: 2,
-                        data: [<?php echo $chart_penjualan; ?>],
+                        data: [<?php echo $chart_pembelian; ?>],
                     }],
                 },
                 options: {

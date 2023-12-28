@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>WHSAKILA2021 - Customer</title>
+    <title>DWOUAS - Customer</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
                 <!-- <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div> -->
-                <div class="sidebar-brand-text mx-3">WHSAKILA2021</div>
+                <div class="sidebar-brand-text mx-3">DWOUAS</div>
             </a>
 
             <!-- Divider -->
@@ -233,10 +233,10 @@
                                                 $host       = "localhost";
                                                 $user       = "root";
                                                 $password   = "";
-                                                $database   = "whsakila2021";
+                                                $database   = "dwouas";
                                                 $mysqli     = mysqli_connect($host, $user, $password, $database);
 
-                                                $sql = "SELECT COUNT(customer_id) as jumlah_cust from customer";
+                                                $sql = "SELECT COUNT(CustomerID) as jumlah_cust from customer";
                                                 $query = mysqli_query($mysqli, $sql);
                                                 while ($row2 = mysqli_fetch_array($query)) {
                                                     echo number_format($row2['jumlah_cust'], 0, ".", ",");
@@ -251,66 +251,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Jumlah Customer Tahun Lalu</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <?php
-                                                $sql = "SELECT COUNT(DISTINCT(f.customer_id)) customer FROM fakta_pendapatan f JOIN time t ON f.time_id=t.time_id WHERE t.tahun=2005";
-                                                $query = mysqli_query($mysqli, $sql);
-                                                while ($row2 = mysqli_fetch_array($query)) {
-                                                    echo number_format($row2['customer'], 0, ".", ",");
-                                                }
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-user-alt fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Customer Tahun Ini
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        <?php
-                                                        $sql = "SELECT COUNT(DISTINCT(f.customer_id)) customer FROM fakta_pendapatan f JOIN time t ON f.time_id=t.time_id WHERE t.tahun=2006";
-                                                        $query = mysqli_query($mysqli, $sql);
-                                                        while ($row2 = mysqli_fetch_array($query)) {
-                                                            echo number_format($row2['customer'], 0, ".", ",");
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-user-alt fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
 
                         <!-- Content Row -->
 
@@ -364,16 +304,16 @@
                                             $host       = "localhost";
                                             $user       = "root";
                                             $password   = "";
-                                            $database   = "whsakila2021";
+                                            $database   = "dwouas";
                                             $mysqli     = mysqli_connect($host, $user, $password, $database);
 
-                                            $lamapinjam = mysqli_query($mysqli, "SELECT DISTINCT(lamapinjam), COUNT(customer_id) as customer_id FROM fakta_pendapatan WHERE lamapinjam IS NOT NULL AND lamapinjam > 0 GROUP BY lamapinjam ORDER BY customer_id DESC");
+                                            $lamapinjam = mysqli_query($mysqli, "SELECT DISTINCT(lamapinjam), COUNT(CustomerID) as CustomerID FROM fact_sales WHERE lamapinjam IS NOT NULL AND lamapinjam > 0 GROUP BY lamapinjam ORDER BY CustomerID DESC");
                                             while ($row = mysqli_fetch_array($lamapinjam)) {
                                                 $jenis_lamapinjam[] = $row['lamapinjam'];
 
-                                                $query = mysqli_query($mysqli, "SELECT COUNT(customer_id) as customer_id FROM fakta_pendapatan WHERE lamapinjam IS NOT NULL AND lamapinjam > 0 AND lamapinjam='" . $row['lamapinjam'] . "'");
+                                                $query = mysqli_query($mysqli, "SELECT COUNT(CustomerID) as CustomerID FROM fact_sales WHERE lamapinjam IS NOT NULL AND lamapinjam > 0 AND lamapinjam='" . $row['lamapinjam'] . "'");
                                                 $row = $query->fetch_array();
-                                                $customer[] = $row['customer_id'];
+                                                $customer[] = $row['CustomerID'];
                                             };
                                             ?>
                                             <figure class="highcharts-figure">
@@ -414,7 +354,7 @@
                     <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Your Website 2021</span>
+                                <span>Copyright &copy; UAS DWO UPNJATIM 2023</span>
                             </div>
                         </div>
                     </footer>
@@ -574,10 +514,10 @@
                 $host = "localhost";
                 $user = "root";
                 $password = "";
-                $database = "whsakila2021";
+                $database = "dwouas";
                 $conn = mysqli_connect($host, $user, $password, $database);
-                $bulan = "SELECT CONCAT(MONTHNAME(t.tanggallengkap), ' ', YEAR(t.tanggallengkap)) bulan FROM fakta_pendapatan f JOIN time t ON f.time_id=t.time_id GROUP BY t.bulan ORDER BY t.tanggallengkap";
-                $customer = "SELECT COUNT(f.customer_id) customer FROM fakta_pendapatan f JOIN time t ON f.time_id=t.time_id GROUP BY t.bulan ORDER BY t.tanggallengkap";
+                $bulan = "SELECT CONCAT(MONTHNAME(t.tanggallengkap), ' ', YEAR(t.tanggallengkap)) bulan FROM fact_sales f JOIN time t ON f.TimeID=t.time_id GROUP BY t.bulan ORDER BY t.tanggallengkap";
+                $customer = "SELECT COUNT(f.CustomerID) customer FROM fact_sales f JOIN time t ON f.TimeID=t.time_id GROUP BY t.bulan ORDER BY t.tanggallengkap";
                 $i = 1;
                 $query_bulan = mysqli_query($conn, $bulan);
                 $jumlah_bulan = mysqli_num_rows($query_bulan);

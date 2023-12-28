@@ -1,0 +1,48 @@
+<Schema name="New Schema1">
+  <Dimension type="StandardDimension" visible="false" highCardinality="false" name="Dimensi Tahun">
+    <Hierarchy name="Tahun" visible="true" hasAll="true" allMemberName="Semua Tahun" primaryKey="time_id">
+      <Table name="time">
+      </Table>
+      <Level name="Nama Tahun" visible="true" column="time_id" nameColumn="tahun" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Dimensi Wilayah">
+    <Hierarchy name="Wilayah" visible="true" hasAll="true" allMemberName="Semua Wilayah" primaryKey="TerritoryID">
+      <Table name="salesterritory">
+      </Table>
+      <Level name="Nama Wilayah" visible="true" column="TerritoryID" nameColumn="Name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Dimensi Produk">
+    <Hierarchy name="Produk" visible="true" hasAll="true" allMemberName="Semua Produk" primaryKey="ProductID">
+      <Table name="product">
+      </Table>
+      <Level name="Nama Produk" visible="true" column="ProductID" nameColumn="Name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Dimensi Customer">
+    <Hierarchy name="Customer" visible="true" hasAll="true" allMemberName="Semua Customer" primaryKey="CustomerID">
+      <Table name="customer">
+      </Table>
+      <Level name="Nama Customer" visible="true" column="CustomerID" nameColumn="AccountNumber" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Sales" visible="true" cache="true" enabled="true">
+    <Table name="fact_sales">
+    </Table>
+    <DimensionUsage source="Dimensi Tahun" name="Tahun" visible="true" foreignKey="TimeID" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dimensi Wilayah" name="Wilayah" visible="true" foreignKey="TerritoryID" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dimensi Produk" name="Produk" visible="true" foreignKey="ProductID" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dimensi Customer" name="Customer" visible="true" foreignKey="CustomerID" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Total Penjualan" column="LineTotal" datatype="Numeric" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
