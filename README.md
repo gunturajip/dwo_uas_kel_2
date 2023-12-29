@@ -1,3 +1,27 @@
+# Panduan Instalasi Utuh Web App Final Project Data Warehouse - Kelompok 2 Kelas Data Warehouse Paralel B (Dosen Pengampu: Ibu Amalia Anjani Arifiyanti, S.Kom., M.Kom.)
+
+## PREREQUISITE
+
+- Java 19.0.2 (https://download.oracle.com/java/19/archive/jdk-19.0.2_windows-x64_bin.msi)
+- NodeJS v16.15.0 (https://nodejs.org/dist/v16.15.0/node-v16.15.0-x64.msi)
+- XAMPP 8.0.28
+- Plugin tambahan untuk menjalankan Mondrian Cube pada Web App (https://drive.google.com/drive/folders/17ZIb0GzIotyBRJKa8i80saZEVHRmgv04)
+
+## Panduan Setup / Instalasi Web App
+
+- Kita coba download seluruh prerequisite diatas
+- Lalu, kita install pada PC / Laptop kita dan restart ulang device agar mendapat kesiapan operasional dari masing - masing softwre yang telah diinstall
+- Kita coba clone repository pada https://github.com/gunturajip/dwo_uas_kel_2.git atau download manual, jangan lupa untuk di-ekstrak terlebih dahulu hasil download dari repository tersebut
+- Kita taruh source code web app tersebut ke bagian C:\xampp\htdocs
+- Kita coba masukkan terlebih dahulu file - file plugin tambahan pada prerequisite, yaitu mysql-connector-java-5.1.40, jtds-1.3.1, dan sqljdbc4-2.0 pada C:\xampp\tomcat\lib
+- Setelah itu, coba buka source code web app tersebut menggunakan Visual Studio Code atau Text Editor kesayangan Anda
+- Setelah terbuka, kita bisa melihat ada file database dwouas.sql, buat database baru di xampp dan import file tersebut untuk dapat terhubung dengan web app nya nanti
+- Untuk Database Connection, kita menggunakan username = "root" dan password = "" yang merupakan default username dan password dari Xampp untuk Database Connection Credentials, kita bisa menyesuaikan username dan password kita dengan melakukan oeverwrite pada source code bila username dan password Xampp kita tidak sama dengan username dan password default tadi
+- Kita buka terminal atau CMD yang mengarah ke direktori source code web app kita, dan mengetikkan "npm install" untuk menginstall seluruh library JavaScript yang berguna untuk menjalankan web app tersebut
+- Kita juga perlu mengetikkan "npm start" guna melakukan build pada web app agar ter-generate file - file library yang bisa digunakan untuk menjalankan web app tersebut
+- Terakhir, kita bisa jalankan Apache, MySQL, dan Tomcat dari web app kita dengan pergi ke browser dengan URL = http://localhost/Dashboard-WhSakila2021/index.php, kita akan disuguhkan dengan tampilan web app lengkap beserta dengan Mondrian Cube
+
+
 # [Start Bootstrap - SB Admin 2](https://startbootstrap.com/theme/sb-admin-2/)
 
 [SB Admin 2](https://startbootstrap.com/theme/sb-admin-2/) is an open source admin dashboard theme for [Bootstrap](https://getbootstrap.com/) created by [Start Bootstrap](https://startbootstrap.com/).
