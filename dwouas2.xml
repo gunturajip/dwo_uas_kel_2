@@ -1,25 +1,33 @@
 <Schema name="New Schema1">
-  <Dimension type="StandardDimension" visible="true" name="Dimensi Tahun">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Dimensi Tahun">
     <Hierarchy name="Tahun" visible="true" hasAll="true" allMemberName="Semua Tahun" primaryKey="time_id">
-      <Table name="time" alias="">
+      <Table name="time">
       </Table>
       <Level name="Nama Tahun" visible="true" column="time_id" nameColumn="tahun" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="StandardDimension" visible="true" name="Dimensi Metode Pengiriman">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Dimensi Metode Pengiriman">
     <Hierarchy name="Metode Pengiriman" visible="true" hasAll="true" allMemberName="Semua Metode Pengiriman" primaryKey="ShipMethodID">
-      <Table name="shipmethod" alias="">
+      <Table name="shipmethod">
       </Table>
       <Level name="Nama Metode Pengiriman" visible="true" column="ShipMethodID" nameColumn="Name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="StandardDimension" visible="true" name="Dimensi Vendor Perusahaan">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Dimensi Vendor Perusahaan">
     <Hierarchy name="Vendor Perusahaan" visible="true" hasAll="true" allMemberName="Semua Vendor Perusahaan" primaryKey="VendorID">
-      <Table name="vendor" alias="">
+      <Table name="vendor">
       </Table>
       <Level name="Nama Vendor Perusahaan" visible="true" column="VendorID" nameColumn="Name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Dimensi Produk">
+    <Hierarchy name="Produk" visible="true" hasAll="true" allMemberName="Semua Produk" primaryKey="ProductID">
+      <Table name="product">
+      </Table>
+      <Level name="Nama Produk" visible="true" column="ProductID" nameColumn="Name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -31,26 +39,18 @@
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="StandardDimension" visible="true" name="Dimensi Produk">
-    <Hierarchy name="Produk" visible="true" hasAll="true" allMemberName="Semua Produk" primaryKey="ProductID">
-      <Table name="product" alias="">
-      </Table>
-      <Level name="Nama Produk" visible="true" column="ProductID" nameColumn="Name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-    </Hierarchy>
-  </Dimension>
   <Cube name="Purchase" visible="true" cache="true" enabled="true">
-    <Table name="fact_purchase" alias="">
+    <Table name="fact_purchase">
     </Table>
-    <DimensionUsage source="Dimensi Tahun" name="Tahun" visible="true" foreignKey="time_id">
+    <DimensionUsage source="Dimensi Tahun" name="Tahun" visible="true" foreignKey="TimeID" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Dimensi Metode Pengiriman" name="Metode Pengiriman" visible="true" foreignKey="ShipMethodID">
+    <DimensionUsage source="Dimensi Metode Pengiriman" name="Metode Pengiriman" visible="true" foreignKey="ShipMethodID" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Dimensi Vendor Perusahaan" name="Vendor Perusahaan" visible="true" foreignKey="VendorID">
+    <DimensionUsage source="Dimensi Vendor Perusahaan" name="Vendor Perusahaan" visible="true" foreignKey="VendorID" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Dimensi PIC Perusahaan" name="PIC Perusahaan" visible="false" foreignKey="EmployeeID">
+    <DimensionUsage source="Dimensi Produk" name="Produk" visible="true" foreignKey="ProductID" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Dimensi Produk" name="Produk" visible="true" foreignKey="ProductID">
+    <DimensionUsage source="Dimensi PIC Perusahaan" name="PIC Perusahaan" foreignKey="EmployeeID" visible="true">
     </DimensionUsage>
     <Measure name="Total Pembelian" column="LineTotal" aggregator="sum" visible="true">
     </Measure>

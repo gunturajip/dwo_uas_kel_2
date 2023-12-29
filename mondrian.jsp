@@ -15,4 +15,4 @@
 
 
 
-            <c:set var="title01" scope="session">Test Query uses Mondrian OLAP</c:set>
+            <c:set var="title01" scope="session">Sales Cube</c:set>

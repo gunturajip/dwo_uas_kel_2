@@ -4,11 +4,14 @@
 
             <jp:mondrianQuery id="query01" jdbcDriver="net.sourceforge.jtds.jdbc.Driver"
                 jdbcUrl="jdbc:mysql://localhost/dwouas?user=root&password="
-                catalogUri="C:\xampp\tomcat\webapps\mondrian\WEB-INF\queries\dwouas.xml" jdbcUser="root" jdbcPassword=""
-                connectionPooling="false">
-                select {[Measures].[Total Pembelian]} on columns, {([Tahun].[Semua Tahun], [Metode Pengiriman].[Semua
-                Metode Pengiriman], [Vendor Perusahaan].[Semua Vendor Perusahaan], [PIC Perusahaan].[Semua PIC
-                Perusahaan], [Produk].[Semua Produk])} on rows
+                catalogUri="C:\xampp\tomcat\webapps\mondrian\WEB-INF\queries\dwouas2.xml" jdbcUser="root"
+                jdbcPassword="" connectionPooling="false">
+                select {[Measures].[Total Pembelian]} on columns,
+                {([Tahun].[Semua Tahun],
+                [Metode Pengiriman].[Semua Metode Pengiriman],
+                [Vendor Perusahaan].[Semua Vendor Perusahaan],
+                [Produk].[Semua Produk],
+                [PIC Perusahaan].[Semua PIC Perusahaan])} on rows
                 from Purchase
             </jp:mondrianQuery>
 
@@ -16,4 +19,4 @@
 
 
 
-            <c:set var="title01" scope="session">Test Query uses Mondrian OLAP</c:set>
+            <c:set var="title01" scope="session">Purchase Cube</c:set>
