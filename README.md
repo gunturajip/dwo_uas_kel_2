@@ -16,7 +16,8 @@
 - Kita coba masukkan terlebih dahulu file - file plugin tambahan pada prerequisite, yaitu mysql-connector-java-5.1.40, jtds-1.3.1, dan sqljdbc4-2.0 pada C:\xampp\tomcat\lib
 - Setelah itu, coba buka source code web app tersebut menggunakan Visual Studio Code atau Text Editor kesayangan Anda
 - Setelah terbuka, kita bisa melihat ada file database dwouas.sql, buat database baru di xampp dan import file tersebut untuk dapat terhubung dengan web app nya nanti
-- Untuk Database Connection, kita menggunakan username = "root" dan password = "" yang merupakan default username dan password dari Xampp untuk Database Connection Credentials, kita bisa menyesuaikan username dan password kita dengan melakukan oeverwrite pada source code bila username dan password Xampp kita tidak sama dengan username dan password default tadi
+- Kita juga perlu meng-copy file dwouas.xml, dwouas2.xml, mondrian.jsp, dan mondrian2.jsp ke C:\xampp\tomcat\webapps\mondrian\WEB-INF\queries
+- Untuk Database Connection, kita menggunakan username = "root" dan password = "" yang merupakan default username dan password dari Xampp untuk Database Connection Credentials, kita bisa menyesuaikan username dan password kita dengan melakukan overwrite pada source code bila username dan password Xampp kita tidak sama dengan username dan password default tadi
 - Kita buka terminal atau CMD yang mengarah ke direktori source code web app kita, dan mengetikkan "npm install" untuk menginstall seluruh library JavaScript yang berguna untuk menjalankan web app tersebut
 - Kita juga perlu mengetikkan "npm start" guna melakukan build pada web app agar ter-generate file - file library yang bisa digunakan untuk menjalankan web app tersebut
 - Terakhir, kita bisa jalankan Apache, MySQL, dan Tomcat dari web app kita dengan pergi ke browser dengan URL = http://localhost/Dashboard-WhSakila2021/index.php, kita akan disuguhkan dengan tampilan web app lengkap beserta dengan Mondrian Cube
